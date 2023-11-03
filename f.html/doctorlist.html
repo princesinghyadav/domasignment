@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PT-WEB-05 C2</title>
+    <link rel="stylesheet" href="index.css" />
+    <style>
+        div
+{
+        display: flex;
+        justify-content: space-around;
+
+
+}
+
+*{
+  box-sizing: border-box;
+}
+
+label{
+    font-size: 18px;
+}
+
+h1{
+    color :blue;
+    text-decoration: underline;
+    margin-left: 700px;
+    
+}
+
+ form{
+   
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    width: 15%;
+    padding: 15px;
+   margin: auto;
+   margin-top: 100px;
+  
+ }
+
+
+ input[type="submit"]
+ {
+   color: white;
+   background-color: blue;
+  padding: 10px 40px;
+   border: none;
+   margin: 20px;
+   font-size: 15px;
+   border-radius: 5px;
+   cursor: pointer;
+
+ }
+
+
+table {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 60%;
+  margin: auto;
+  margin-top: 50px;
+  text-align: center;
+}
+
+table td,
+table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+  background-color: blue;
+  color : white
+}
+
+
+input[type="text"],
+select,
+textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+    </style>
+  </head>
+  <body>
+    <!-- Dont make any changes here -->
+    <h1>Hospital - Doctor Records</h1>
+
+    <div id = parent>
+      <!-- ***** We are using form here  ****  -->
+      <form>
+        <label for="">Doctor Name</label><br />
+        <input id="name" type="text" placeholder="Enter Doctor Name" /><br />
+        <label for="">Doctor ID</label><br />
+        <input
+          id="docID"
+          type="number"
+          placeholder="Enter Doctor ID"
+        /><br />
+        <label for="">Specialization </label><br />
+        <select id="dept">
+          <option value="">Select Specialization</option>
+          <option value="Dermatologist">Dermatologist</option>
+          <option value="ENT">ENT</option>
+          <option value="Dentist">Dentist</option>
+          <option value="COVID">COVID</option>
+          <option value="Gynecologist">Gynecologist</option></select
+        ><br />
+        <label for="">Experience </label><br />
+        <input id="exp" type="number" placeholder="Experience in Years" /><br />
+        <label for="">Email Address </label><br />
+        <input type="text" id="email" placeholder="Enter Email Address" /><br />
+        <label for="">Mobile Number </label><br />
+        <input id="mbl" type="number" placeholder="Enter Mobile number" /><br />
+        <input type="submit" />
+      </form>
+      <table>
+        <!-- Dont change order of columns -->
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Doctor ID</th>
+            <th>Specialization</th>
+            <th>Experience in years</th>
+            <th>Email address</th>
+            <th>Mobile Number</th>
+            <th>Role</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- ******* Append your output here ********* -->
+        </tbody>
+      </table>
+    </div>
+  </body>
+  <script>
+
+    
+document.addEventListener('DOMContentLoaded', function () {
+    let form = document.querySelector('form');
+    let table = document.querySelector('tbody');
+
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        let name = document.getElementById('name').value;
+        let doctorID = document.getElementById('docID').value;
+        let specialization = document.getElementById('dept').value;
+        let experience = parseInt(document.getElementById('exp').value);
+        let email = document.getElementById('email').value;
+        let mobile = document.getElementById('mbl').value;
+
+        let role = 'Trainee';
+        if (experience > 5) {
+            role = 'Senior';
+        } else if (experience >= 2 && experience <= 5) {
+            role = 'Junior';
+        }
+
+        let newRow = table.insertRow(-1);
+        newRow.innerHTML = `
+            <td>${name}</td>
+            <td>${doctorID}</td>
+            <td>${specialization}</td>
+            <td>${experience} years</td>
+            <td>${email}</td>
+            <td>${mobile}</td>
+            <td>${role}</td>
+            <td><button onclick="deleteRow(this)">Delete</button></td>`;
+
+        form.reset();
+    });
+});
+
+function deleteRow(button) {
+    let row = button.parentElement.parentElement;
+    row.remove();
+}
+  </script>
+</html>
+
+<script src="index.js"></script>
