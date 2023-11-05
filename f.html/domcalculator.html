@@ -111,11 +111,12 @@
         let multiply=document.getElementById("multiply")
         let equal =document.getElementById("equal")
         let divide =document.getElementById("divide")
-        // function check(){
-        //     console.log(display,valuu,plus,minus,multiply,equal,divide)
-        // }
-        let bag=""
-        for(i=0;i<valuu.length-6;i++){
+         function check(){
+             console.log(display,valuu,plus,minus,multiply,equal,divide)
+         }
+        
+        for(i=0;i<valuu.length;i++){
+            let bag=""
          valuu[i].addEventListener("click" , clicked)
          function clicked () {
             bag += valuu[i].textContent
